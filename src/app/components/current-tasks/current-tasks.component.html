@@ -1,0 +1,10 @@
+<h3>current tasks</h3>
+<app-new-task></app-new-task>
+<ul>
+  <li *ngFor="let task of taskService.tasks">
+    {{task.id}} {{task.description}} {{task.deadline}} {{task.isDone}}
+    <button (click)="completeTask(task)">done</button>
+  </li>
+</ul>
+<br><br>
+
