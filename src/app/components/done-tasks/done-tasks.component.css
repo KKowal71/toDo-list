@@ -12,6 +12,7 @@
 .doneTasks {
   margin-top: 2%;
   font-size: 1.2em;
+  font-family: cursive;
   background-color: whitesmoke;
   opacity: 0.8;
   text-decoration: line-through;
