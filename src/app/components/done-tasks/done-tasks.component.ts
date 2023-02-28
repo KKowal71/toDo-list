@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {TaskService} from "../../services/task.service";
-import {CurrentTasksComponent} from "../current-tasks/current-tasks.component";
+import {PassDataService} from "../../services/PassingDoneTasksService/pass-data.service";
 
 @Component({
   selector: 'app-done-tasks',
@@ -9,7 +8,8 @@ import {CurrentTasksComponent} from "../current-tasks/current-tasks.component";
 })
 export class DoneTasksComponent implements OnInit {
 
-  constructor() {  }
+  constructor(public passData: PassDataService) { }
 
-  ngOnInit(): void {  }
+  ngOnInit(): void { }
+
 }

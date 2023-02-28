@@ -1,3 +1,8 @@
-<input type="text" placeholder="description" [(ngModel)]="newTask.description">
-<input type="text" placeholder="deadline" [(ngModel)]="newTask.deadline">
-<button (click)="addNewTask()">add</button>
+<div class="inputDiv">
+  <input class="input" type="text" placeholder="description" [(ngModel)]="newTask.description">
+  <input class="input" type="text" placeholder="deadline" [(ngModel)]="newTask.deadline">
+</div>
+  <button class="addButton" (click)="addNewTask()">
+  <img src="assets/images/add.png" width="60em" height="50em">
+</button>
+

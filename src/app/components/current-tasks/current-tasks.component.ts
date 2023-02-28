@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {TaskService} from "../../services/task.service";
+import {TaskService} from "../../services/AddingTasksService/task.service";
+import {PassDataService} from "../../services/PassingDoneTasksService/pass-data.service";
+
 
 @Component({
   selector: 'app-current-tasks',
@@ -7,30 +9,41 @@ import {TaskService} from "../../services/task.service";
   styleUrls: ['./current-tasks.component.css']
 })
 export class CurrentTasksComponent implements OnInit {
-   // const doneTasks: Array<{id: number, description: string, deadline: string, isDone: boolean}> = [];
 
-  constructor(public taskService: TaskService) {
+  constructor(private _taskService: TaskService, private _passData: PassDataService) {
   }
 
   ngOnInit(): void { }
 
+
+  get taskService(): TaskService {
+    return this._taskService;
+  }
+
+  get passData(): PassDataService {
+    return this._passData;
+  }
+
   completeTask(task) {
     task.isDone = true;
     this.deleteTaskFromCurrentTasks(task);
-    //this.addTaskToDoneTasks(task);
-
+    this.updateTaskId();
+    this.addTaskToDoneTasks(task);
     }
 
   deleteTaskFromCurrentTasks(task) {
     let indexOfDeletedTask = task.id - 1;
-    this.taskService.tasks.splice(indexOfDeletedTask, 1);
+    this._taskService.tasks.splice(indexOfDeletedTask, 1);
   }
 
-  // addTaskToDoneTasks(task) {
-  //     alert('checkpoint - addTaskToDoneTasks');
-  //     alert('checkpoint - fadklfnljdnflanfjbsjak');
-  //     alert(this.doneTasks.length);
-  //     this.doneTasks.push(task);
-  // }
+  updateTaskId() {
+    for(let i=0; i<this._taskService.tasks.length; i++) {
+      this._taskService.tasks[i].id = i+1;
+    }
+  }
+
+  addTaskToDoneTasks(task) {
+      this._passData.doneTasks.push(task);
+  }
 
 }
