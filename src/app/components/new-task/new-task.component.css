@@ -10,7 +10,7 @@
   caret-color: darkred;
 }
 
-.addButton {
+.addButton, .saveButton {
   border: none;
   background-color: inherit;
   cursor: pointer;
@@ -19,6 +19,19 @@
 }
 
 .addButton:hover {
+  transform: scale(1.5);
+  transition-duration: 1s;
+}
+
+.saveButton {
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+  margin-top: -10%;
+  margin-left: 0;
+}
+
+.saveButton:hover {
   transform: scale(1.5);
   transition-duration: 1s;
 }

@@ -10,13 +10,12 @@ export class NewTaskComponent implements OnInit {
   newTask;
   newId!: number;
 
-  constructor(public taskService: TaskService) {
+  constructor(private taskService: TaskService) {
     this.newId = this.taskService.tasks.length + 1;
     this.newTask = {id: this.newId, description: '', deadline: '', isDone: false};
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   addNewTask() {
     if(this.checkCorrectness()) {
@@ -45,4 +44,28 @@ export class NewTaskComponent implements OnInit {
     return true;
   }
 
+  saveTasks(): void {
+    let fileName = 'My toDo List.txt';
+    let tasksInFile = ['Tasks you have to do:\n\n'];
+    this.formatData(tasksInFile);
+    this.createFile(fileName, tasksInFile);
+  }
+
+  formatData(tasksInFile): void {
+    for(let i=0; i<this.taskService.tasks.length; i++) {
+      let taskId = <string>this.taskService.tasks[i].id
+      let tasksDataToFile = 'Task number: '+ taskId +'\n' + 'Task description: '
+        + this.taskService.tasks[i].description + '\n' + 'Task deadline: ' + this.taskService.tasks[i].deadline + '\n\n';
+      tasksInFile.push(tasksDataToFile);
+    }
+  }
+
+  createFile(fileName, tasksInFile) {
+    const file = new Blob(tasksInFile, {type: "tet/plain"});
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(file);
+    link.download = fileName;
+    link.click();
+    link.remove();
+  }
 }

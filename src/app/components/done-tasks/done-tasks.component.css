@@ -7,6 +7,7 @@
   width: 30%;
   height: 17em;
   font-size: 1.5em;
+  display: flex;
 }
 
 .doneTasks {
@@ -16,4 +17,5 @@
   background-color: whitesmoke;
   opacity: 0.8;
   text-decoration: line-through;
+  display: flex;
 }
