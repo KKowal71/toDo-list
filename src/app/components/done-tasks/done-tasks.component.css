@@ -8,11 +8,12 @@
   height: 17em;
   font-size: 1.5em;
   display: flex;
+  overflow: auto;
 }
 
 .doneTasks {
   margin-top: 2%;
-  font-size: 1.2em;
+  font-size: 1.0em;
   font-family: cursive;
   background-color: whitesmoke;
   opacity: 0.8;

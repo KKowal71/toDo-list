@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
+import {StoreDataService} from "./services/StoreDataService/store-data.service";
 
 @Component({
   selector: 'app-root',
@@ -10,11 +11,7 @@ import {Router} from '@angular/router';
 export class AppComponent {
   title: string = 'ToDoList';
 
-  constructor(private router: Router) {
-  }
-
-  gotoList() {
-    this.router.navigate(['/done-tasks']);
+  constructor(private router: Router, public storage:StoreDataService) {
   }
 
   myFunction(isActive) {

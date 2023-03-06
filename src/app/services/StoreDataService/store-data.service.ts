@@ -22,4 +22,8 @@ export class StoreDataService {
     localStorage.removeItem(key);
   }
 
+  clearStorage() {
+    localStorage.clear()
+  }
+
 }
