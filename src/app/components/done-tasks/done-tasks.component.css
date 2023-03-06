@@ -1,0 +1,21 @@
+.doneTasksDiv {
+  background-color: whitesmoke;
+  opacity: 0.7    ;
+  border: solid darkred 2px;
+  margin-left: 57%;
+  margin-top: 2%;
+  width: 30%;
+  height: 17em;
+  font-size: 1.5em;
+  display: flex;
+}
+
+.doneTasks {
+  margin-top: 2%;
+  font-size: 1.2em;
+  font-family: cursive;
+  background-color: whitesmoke;
+  opacity: 0.8;
+  text-decoration: line-through;
+  display: flex;
+}
