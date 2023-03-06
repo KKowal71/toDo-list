@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {TaskService} from "../../services/AddingTasksService/task.service";
+import {CurrentTasksComponent} from "../current-tasks/current-tasks.component";
+import {StoreDataService} from "../../services/StoreDataService/store-data.service";
 
 @Component({
   selector: 'app-new-task',
@@ -10,7 +12,7 @@ export class NewTaskComponent implements OnInit {
   newTask;
   newId!: number;
 
-  constructor(private taskService: TaskService) {
+  constructor(private taskService: TaskService, private storage: StoreDataService) {
     this.newId = this.taskService.tasks.length + 1;
     this.newTask = {id: this.newId, description: '', deadline: '', isDone: false};
   }
@@ -22,9 +24,11 @@ export class NewTaskComponent implements OnInit {
       this.taskService.tasks.push(this.newTask);
       this.newId += 1;
       this.newTask = {id: this.newId, description: '', deadline: '', isDone: false};
+      this.storage.storeData('currentTasksKey', JSON.stringify(this.taskService.tasks));
       alert('added new task successfully');
     }
   }
+
 
   checkCorrectness(): boolean {
     let description = this.newTask.description;

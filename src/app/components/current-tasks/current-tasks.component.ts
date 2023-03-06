@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {TaskService} from "../../services/AddingTasksService/task.service";
 import {PassDataService} from "../../services/PassingDoneTasksService/pass-data.service";
 import {TaskExpirationComponent} from "../task-expiration/task-expiration.component";
+import {StoreDataService} from "../../services/StoreDataService/store-data.service";
 
 declare var require: any;
 
@@ -12,12 +13,16 @@ declare var require: any;
 })
 export class CurrentTasksComponent implements OnInit {
 
-  constructor(private _taskService: TaskService, private _passData: PassDataService, public taskExpiration: TaskExpirationComponent) {
+  constructor(private _taskService: TaskService, private _passData: PassDataService,
+              public taskExpiration: TaskExpirationComponent, private storage: StoreDataService) {
   }
 
   ngOnInit(): void {
+    const tmpTasks = this.storage.getData('currentTasksKey');
+    if(tmpTasks){
+      this._taskService.tasks = JSON.parse(tmpTasks);
+    }
   }
-
 
   get taskService(): TaskService {
     return this._taskService;
@@ -33,6 +38,7 @@ export class CurrentTasksComponent implements OnInit {
   deleteTaskFromCurrentTasks(task) {
     let indexOfDeletedTask = task.id - 1;
     this._taskService.tasks.splice(indexOfDeletedTask, 1);
+    this.storage.removeData('currentTasksKey');
   }
 
   updateTaskId() {
@@ -43,6 +49,8 @@ export class CurrentTasksComponent implements OnInit {
 
   addTaskToDoneTasks(task) {
     this._passData.doneTasks.push(task);
+    this.storage.storeData('doneTasksKey', JSON.stringify(this._passData.doneTasks));
+    this.storage.storeData('currentTasksKey', JSON.stringify(this.taskService.tasks));
   }
 }
 
