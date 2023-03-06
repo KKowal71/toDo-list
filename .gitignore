@@ -42,7 +42,7 @@ testem.log
 Thumbs.db
 
 
-.vscode
+.vscode/
 .editorconfig
 angular.json
 package-lock.json
