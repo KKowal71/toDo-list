@@ -8,6 +8,7 @@ import { CurrentTasksComponent } from './components/current-tasks/current-tasks.
 import { NewTaskComponent } from './components/new-task/new-task.component';
 import {FormsModule} from "@angular/forms";
 import { DoneTasksComponent } from './components/done-tasks/done-tasks.component';
+import { TaskExpirationComponent } from './components/task-expiration/task-expiration.component';
 
 const routes: Routes = [
   {path: 'active-tasks', component: CurrentTasksComponent},
@@ -20,14 +21,15 @@ const routes: Routes = [
     HeaderComponent,
     CurrentTasksComponent,
     NewTaskComponent,
-    DoneTasksComponent
+    DoneTasksComponent,
+    TaskExpirationComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [TaskExpirationComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

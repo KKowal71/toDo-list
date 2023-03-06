@@ -22,3 +22,18 @@
   font-size: 1.5em;
   font-family: cursive;
 }
+
+li {
+  cursor: help;
+}
+
+#dateLeft{
+  border: solid black 2px;
+  border-radius: 10px;
+  padding: 3%;
+  display: none;
+  position: absolute;
+  background-color: burlywood;
+  margin-top: -5%;
+  margin-left: 40%;
+}

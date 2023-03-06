@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import {Component} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 
 export class AppComponent {
-
+  title: string = 'ToDoList';
 
   constructor(private router: Router) {
   }
@@ -17,5 +17,20 @@ export class AppComponent {
     this.router.navigate(['/done-tasks']);
   }
 
-  title = 'ToDoList';
+  myFunction(isActive) {
+    var activeCurrentTasks = document.getElementById("activeTasks");
+    var activeDoneTasks = document.getElementById("doneTasks");
+    if (isActive) {
+      activeDoneTasks.classList.remove("activeStyle");
+      activeCurrentTasks.classList.toggle("activeStyle");
+    } else {
+      activeDoneTasks.classList.toggle("activeStyle");
+      activeCurrentTasks.classList.remove("activeStyle");
+    }
+  }
+
 }
+
+
+
+
