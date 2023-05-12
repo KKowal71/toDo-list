@@ -28,11 +28,16 @@ export class CurrentTasksComponent implements OnInit {
     return this._taskService;
   }
 
-  completeTask(task) {
+  completeTask(task: any, id: string) {
     task.isDone = true;
-    this.deleteTaskFromCurrentTasks(task);
-    this.updateTaskId();
-    this.addTaskToDoneTasks(task);
+    let element = document.getElementById(id);
+    element.style.textDecoration = 'line-through';
+    element.style.textDecorationColor = 'red';
+    setTimeout(() => {
+      this.deleteTaskFromCurrentTasks(task);
+      this.updateTaskId();
+      this.addTaskToDoneTasks(task);
+    }, 1500)
   }
 
   deleteTaskFromCurrentTasks(task) {
